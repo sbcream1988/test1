@@ -36,7 +36,7 @@
 	
 	<form th:action="@{|/answer/create/${question.id}|}" th:object = "${answerForm}" method="post">
 		<div th:replace = "~{form_errors :: formErrorsFragment}"></div>
-		<textarea class = "form-control" rows="10" name = "content" id = "content"></textarea>
+		<textarea class = "form-control" rows="10" th:field = "*{content}"></textarea>
 		<input class = "btn btn-primary" type = "submit" value = "답변등록">
 	</form>
 	
