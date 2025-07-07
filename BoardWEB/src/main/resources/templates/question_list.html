@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html layout:decorate = "~{layout}">
+<head>
+<meta charset="UTF-8">
+<title>게시판 목록</title>
+</head>
+<body>
+	<div layout:fragment = "content" class = "container my-3">
+	<table class = "table">
+		<thead class = "table-dark">
+			<tr>
+				<td>번호</td>
+				<td>제목</td>
+				<td>날짜</td>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<tr th:each = "question, loop : ${questionList}">
+				<td th:text = "${loop.count}"></td>
+				<td><a th:href = "|/question/detail/${question.id}|" th:text = "${question.subject}"></a></td>
+				<td th:text = "${#temporals.format(question.createDate, 'yyyy-MM-dd HH:mm')}"></td>
+			<tr>
+		</tbody>
+	</table>
+	<a th:href = "@{/question/create}" class = "btn btn-primary">새글 등록</a>
+	</div>
+</body>
+</html>
