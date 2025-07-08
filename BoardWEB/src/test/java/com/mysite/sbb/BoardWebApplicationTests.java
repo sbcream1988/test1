@@ -13,12 +13,13 @@ import com.mysite.sbb.answer.Answer;
 import com.mysite.sbb.answer.AnswerRepository;
 import com.mysite.sbb.question.Question;
 import com.mysite.sbb.question.QuestionRepository;
+import com.mysite.sbb.question.QuestionService;
 
 @SpringBootTest
 class BoardWebApplicationTests {
 	
 	@Autowired
-	private QuestionRepository questionRepository;
+	private QuestionService questionService;
 	
 	@Autowired
 	private AnswerRepository answerRepository;
@@ -132,7 +133,13 @@ class BoardWebApplicationTests {
 //			System.out.println(a.getCreateDate());
 //			System.out.println(a.getQuestion().getContent());
 //		}
-		
+//
+//		
+//		for(int i = 1; i <=300; i++) {
+//			String subject = String.format("테스트데이터입니다:[%03d]", i);
+//			String content = "내용 없음";
+//			this.questionService.create(subject, content);
+//		}
 		
 	}
 

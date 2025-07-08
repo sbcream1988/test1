@@ -2,6 +2,8 @@ package com.mysite.sbb.question;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface QuestionRepository extends JpaRepository<Question, Integer> {
@@ -20,4 +22,6 @@ public interface QuestionRepository extends JpaRepository<Question, Integer> {
 	
 	//findBySubjectOrderByCreateDateASC
 	List<Question> findBySubjectOrderByCreateDateAsc(String subject);
+	
+	Page<Question> findAll(Pageable pageable);
 }
