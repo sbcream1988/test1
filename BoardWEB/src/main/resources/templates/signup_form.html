@@ -15,7 +15,7 @@
 	
 	<form th:action = "@{/user/signup}" method="post" th:object = "${userCreateForm}">
 		<div th:replace = "~{form_errors::formErrorsFragment}"></div>
-		<div class = "mb-3">	
+		<div class = "mb-3">
 			<label for = "username" class = "form-label">아이디</label>
 			<input type = "text" class = "form-control" th:field = "*{username}">
 		</div>
