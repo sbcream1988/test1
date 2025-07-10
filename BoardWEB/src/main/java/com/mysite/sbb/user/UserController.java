@@ -1,5 +1,6 @@
 package com.mysite.sbb.user;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,7 +32,24 @@ public class UserController {
 			bindingResult.rejectValue("password2", "passwordInCorrect", "비밀번호가 불일치 합니다.");
 			return "signup_form";
 		}
-		this.userService.create(userCreateForm.getUsername(), userCreateForm.getEmail(), userCreateForm.getPassword1());
+		
+		try {
+			this.userService.create(userCreateForm.getUsername(), userCreateForm.getEmail(), userCreateForm.getPassword1());
+		}catch(DataIntegrityViolationException e) {
+			e.printStackTrace();
+			bindingResult.reject("signupFailed", "이미등록된 사용자입니다.");
+			return "signup_form";
+		}catch(Exception e) {
+			e.printStackTrace();
+			bindingResult.reject("signupFailed",e.getMessage());
+			return "signup_form";
+		}
+		
 		return "redirect:/";
+	}
+	
+	@GetMapping("/login")
+	public String login() {
+		return "login_page";
 	}
 }

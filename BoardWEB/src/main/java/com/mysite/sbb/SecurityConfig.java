@@ -19,8 +19,10 @@ public class SecurityConfig {
 	SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
 		http
 			.authorizeHttpRequests((authorizeHttpRequests)-> authorizeHttpRequests //URL 경로별로 접근 권한을 설정
-					.requestMatchers(new AntPathRequestMatcher("/**")).permitAll() //requestMatchers로 설정한 경로는 인증없이 누구나 접근가능하도록 허용
-					);
+					.requestMatchers(new AntPathRequestMatcher("/**")).permitAll()) //requestMatchers로 설정한 경로는 인증없이 누구나 접근가능하도록 허용
+					.formLogin(formLogin->formLogin
+					.loginPage("/user/login")
+					.defaultSuccessUrl("/"));
 			
 			return http.build(); //반드시 반환해야함
 	}
