@@ -24,7 +24,11 @@ public class SecurityConfig {
 					.requestMatchers(new AntPathRequestMatcher("/**")).permitAll()) //requestMatchers로 설정한 경로는 인증없이 누구나 접근가능하도록 허용
 					.formLogin(formLogin->formLogin
 					.loginPage("/user/login")
-					.defaultSuccessUrl("/"));
+					.defaultSuccessUrl("/"))
+					.logout(logout -> logout
+					.logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
+					.logoutSuccessUrl("/")
+					.invalidateHttpSession(true));
 			
 			return http.build(); //반드시 반환해야함
 	}
